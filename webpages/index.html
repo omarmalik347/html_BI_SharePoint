@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>    
+    <title>JIGPC - Project Controls</title>
+    <meta charset="utf-8">
+    <meta property="og:url" content="https://jigpc.com/">
+    <link rel="shortcut icon" href="./jigpc_gallery/images/jigpc_logo.ico">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            background-color: #faf9f7;
+        }
+        .top-image-container {
+            width: 100%;
+            height: 20%;
+            background: url('https://jigpcsa.sharepoint.com/:i:/r/sites/JIGPCDashboard/SiteAssets/top-image-container.jpg?csf=1&web=1&e=2naGYs') no-repeat;
+            background-size: cover;
+            position: absolute;
+            animation: rgbLighting 10s infinite;
+            z-index: 1; /* Ensure this is behind the image container */
+        }
+        @keyframes rgbLighting {
+            0% { filter: drop-shadow(0 0 10px red); }
+            33% { filter: drop-shadow(0 0 10px green); }
+            66% { filter: drop-shadow(0 0 10px blue); }
+            100% { filter: drop-shadow(0 0 10px red); }
+        }
+        .navigation {
+            position: absolute;
+            top: 10px;
+            left: 40px;
+            display: flex;
+            gap: 5px;
+            z-index: 10;
+        }
+        .navigation img {
+            height: 25px;
+        }
+        .navigation a {
+            text-decoration: none;
+            color: white;
+            transition: color 0.3s;
+            display: flex;
+            align-items: center;
+            font-family: 'Calibri', sans-serif;
+            padding: 5px 10px;
+        }
+        .navigation a:hover {
+            color: lightgray;
+        }
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: transparent;
+            min-width: 120px;
+            z-index: 1;
+            top: 100%;
+            left: 0;
+        }
+        .dropdown-content a {
+            color: white;
+            padding: 5px 10px;
+            text-decoration: none;
+            display: block;
+            background-color: transparent;
+            transition: background-color 0.3s;
+        }
+        .dropdown-content a:hover {
+            background-color: transparent;
+        }
+        .dropdown:hover .dropdown-content {
+            display: grid;
+        }
+        .dropdown:hover .dropbtn {
+            color: lightgray;
+        }
+        .image-container {
+            width: 80%;
+            height: 80vh;
+            position: absolute;
+            top: 15%; /* Adjusted to overlap with top image */
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #fff;
+            padding: 2px;
+            border: 0px;
+            border-radius: 15px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+            overflow: hidden;
+            z-index: 5;
+            position: absolute;
+        }
+        .image-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+            border-radius: 15px;
+            position: absolute;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+        }
+        .image-container img.active {
+            opacity: 1;
+        }
+        .marquee-container {
+            position: relative;
+            top: 15%;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 10;
+            width: 80%;
+        }
+        marquee {
+            font-family: '', sans-serif;
+            font-size: 80px;
+            color: rgb(248, 240, 229);
+        }
+    </style>
+</head>
+<body>
+    <div class="top-image-container"></div>
+    <div class="navigation">
+        <img src="https://jigpcsa.sharepoint.com/:i:/r/sites/JIGPCDashboard/SiteAssets/jigpc_logo.ico?csf=1&web=1&e=bIA0If" alt="Navigation Icon">
+        <a href="https://jigpcsa.sharepoint.com/:u:/r/sites/JIGPCDashboard/SitePages/Home.aspx">Home</a>
+        <a href="https://jigpcsa.sharepoint.com/sites/JIGPCDashboard/SitePages/EHS.aspx">EH&S</a>
+        <div class="dropdown">
+            <a class="dropbtn">Quality</a>
+            <div class="dropdown-content">
+                <a href="https://jigpcsa.sharepoint.com/:u:/r/sites/JIGPCDashboard/SitePages/Quality.aspx">Doc Status</a>
+                <a href="https://jigpcsa.sharepoint.com/:u:/r/sites/JIGPCDashboard/SitePages/Warehouse.aspx">Warehouse Inspection</a>
+            </div>
+        </div>
+        <a href="https://jigpcsa.sharepoint.com/:u:/r/sites/JIGPCDashboard/SitePages/Portfolio.aspx">Portfolio</a>
+        <div class="dropdown">
+            <a class="dropbtn">Programs</a>
+            <div class="dropdown-content">
+                <a href="https://jigpcsa.sharepoint.com/:u:/r/sites/JIGPCDashboard/SitePages/Cybersecurity.aspx">Cybersecurity</a>
+                <a href="https://jigpcsa.sharepoint.com/:u:/r/sites/JIGPCDashboard/SitePages/FAITs.aspx">FAITs</a>
+            </div>
+        </div>
+        <div class="dropdown">
+            <a class="dropbtn">Projects</a>
+            <div class="dropdown-content">
+                <a href="https://jigpcsa.sharepoint.com/:u:/r/sites/JIGPCDashboard/SitePages/Projects.aspx">Projects Status</a>
+                <a href="https://jigpcsa.sharepoint.com/:u:/r/sites/JIGPCDashboard/SitePages/Dossier.aspx">Dossier Status</a>
+                <a href="https://jigpcsa.sharepoint.com/:u:/r/sites/JIGPCDashboard/SitePages/V-Line%20Project.aspx">V-Line Project</a>
+            </div>
+        </div>
+        <a href="https://jigpcsa.sharepoint.com/:u:/r/sites/JIGPCDashboard/SitePages/Shutdown.aspx">Shutdown</a>
+        <a href="https://jigpcsa.sharepoint.com/:u:/r/sites/JIGPCDashboard/SitePages/Project-Cost.aspx">Projects Cost</a>
+        <a href="https://jigpcsa.sharepoint.com/:u:/r/sites/JIGPCDashboard/SitePages/DNs-EVM.aspx">EVM Review</a>
+        <a href="https://jigpcsa.sharepoint.com/:u:/r/sites/JIGPCDashboard/SitePages/Revenue.aspx">Revenue Cashflow</a>
+        <a href="https://jigpcsa.sharepoint.com/:u:/r/sites/JIGPCDashboard/SitePages/Contract-Admin.aspx">Contract Admin</a>
+    </div>
+
+    <div class="marquee-container">
+        <marquee width="100%" direction="left" height="100px">
+            JAZAN INTEGRATED GASIFICATION AND POWER COMPANY
+        </marquee>
+    </div>
+
+    <div class="image-container">
+        <img src="https://jigpcsa.sharepoint.com/:i:/r/sites/JIGPCDashboard/SiteAssets/image3.jpeg?csf=1&web=1&e=hIcXfR" alt="Home Page" class="active">
+        <img src="https://jigpcsa.sharepoint.com/:i:/r/sites/JIGPCDashboard/SiteAssets/image2.jpeg?csf=1&web=1&e=BZSauU" alt="Second Image" >
+        <img src="https://jigpcsa.sharepoint.com/:i:/r/sites/JIGPCDashboard/SiteAssets/Home_page.jpeg?csf=1&web=1&e=SDHaCv" alt="Third Image" >
+        <img src="https://jigpcsa.sharepoint.com/:i:/r/sites/JIGPCDashboard/SiteAssets/GT%20Gif.gif?csf=1&web=1&e=NtmP9X" alt="Forth Image" >
+        <img src="https://jigpcsa.sharepoint.com/:i:/r/sites/JIGPCDashboard/SiteAssets/Login_BG.gif?csf=1&web=1&e=PoO0Xc" alt="Fifth Image">
+        <img src="https://jigpcsa.sharepoint.com/:i:/r/sites/JIGPCDashboard/SiteAssets/Utilities.gif?csf=1&web=1&e=nHHa3P" alt="Sixth Image">
+    </div>
+
+    <script>
+        let currentImageIndex = 0;
+        const images = document.querySelectorAll('.image-container img');
+        const totalImages = images.length;
+
+        function changeImage() {
+            images[currentImageIndex].classList.remove('active');
+            currentImageIndex = (currentImageIndex + 1) % totalImages;
+            images[currentImageIndex].classList.add('active');
+        }
+
+        setInterval(changeImage, 4000); // Change image every 3 seconds
+    </script>
+    
+</body>
+</html>

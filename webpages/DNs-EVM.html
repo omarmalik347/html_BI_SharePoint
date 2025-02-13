@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>    
+    <title>JIGPC - Project Controls</title>
+    <meta charset="utf-8">
+    <meta property="og:url" content="https://jigpc.com/">
+    <link rel="shortcut icon" href="./jigpc_gallery/images/jigpc_logo.ico">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            background-color: #faf9f7;
+            
+        }
+        .top-image-container {
+            width: 100%;
+            height: 20%;
+            background: url('https://jigpcsa.sharepoint.com/:i:/r/sites/JIGPCDashboard/SiteAssets/top-image-container.jpg?csf=1&web=1&e=2naGYs') no-repeat;
+            background-size: cover;
+            position: absolute;
+            animation: rgbLighting 10s infinite;
+        }
+        @keyframes rgbLighting {
+            0% { filter: drop-shadow(0 0 10px red); }
+            33% { filter: drop-shadow(0 0 10px green); }
+            66% { filter: drop-shadow(0 0 10px blue); }
+            100% { filter: drop-shadow(0 0 10px red); }
+        }
+        .navigation {
+            position: absolute;
+            top: 10px;
+            left: 40px;
+            display: flex;
+            gap: 5px;
+        }
+        .navigation img {
+            height: 25px; /* Adjust size as needed */
+        }
+        .navigation a {
+            text-decoration: none;
+            color: white;
+            transition: color 0.3s;
+            display: flex;
+            align-items: center;
+            font-family: 'Calibri', sans-serif;
+            padding: 5px 10px; /* Optional: Add some padding to make the clickable area larger */
+        }
+        .navigation a:hover {
+            color: lightgray;
+        }
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: transparent;
+            min-width: 120px;
+            z-index: 1;
+            top: 100%; /* Adjusts the position of the submenu */
+            left: 0; /* Aligns the submenu with the parent */
+        }
+        .dropdown-content a {
+            color: white;
+            padding: 5px 10px;
+            text-decoration: none;
+            display: block;
+            background-color: transparent;
+            transition: background-color 0.3s;
+        }
+        .dropdown-content a:hover {
+            background-color: transparent;
+        }
+        .dropdown:hover .dropdown-content {
+            display: grid;
+        }
+        .dropdown:hover .dropbtn {
+            color: lightgray;
+        }
+        .iframe-box {
+            width: 70%; /* Adjust width as needed */
+            height: 700px; /* Adjust height as needed */
+            position: absolute;
+            top: 15%; /* Adjust top position based on top-image-container's height */
+            left: 40%;
+            transform: translateX(-50%);
+            background-color: #fff; /* Background color for visibility */
+            padding: 5px;
+            border-radius: 15px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+        }
+        .page-title {
+            position: absolute;
+            top: 5%;
+            right: 0px; /* Adjust as needed */
+            color: white;
+            font-size: 40px; /* Adjust font size as needed */
+            font-family: 'Calibri', sans-serif;
+            animation: slideFromRight 2s ease forwards; /* Apply animation */
+            opacity: 0; /* Initially hide the text */
+        }
+        @keyframes slideFromRight {
+            0% { right: 50%; opacity: 0; } /* Start position */
+            100% { right: 5%; opacity: 1; } /* End position */
+        }
+        .file-container11 {
+            width: 15%; /* Same width as comments container */
+            height: 60px; /* Adjust height as needed */
+            position: absolute;
+            top: 32.5%; /* Adjust top position based on comments container */
+            right: 0%;
+            transform: translateX(-30%);
+            background-color: #fff; /* Background color for visibility */
+            padding: 15px;
+            border-radius: 15px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+            font-family: 'Calibri', sans-serif;
+            text-align: center;
+            display: flex; /* Add flexbox */
+            justify-content: center; /* Center horizontally */
+            align-items: center; /* Center vertically */
+        }
+        .file-container11 a {
+            text-decoration: none;
+            color: #01B8AA;
+            font-weight: bold;
+            font-size: 20px;
+            transition: color 0.3s;
+        }
+        .file-container11 a:hover {
+            color: #019a90;
+            font-size: x-large;
+            
+        }
+        .file-container1 {
+            width: 15%; /* Same width as comments container */
+            height: 60px; /* Adjust height as needed */
+            position: absolute;
+            top: 45%; /* Adjust top position based on comments container */
+            right: 0%;
+            transform: translateX(-30%);
+            background-color: #fff; /* Background color for visibility */
+            padding: 15px;
+            border-radius: 15px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+            font-family: 'Calibri', sans-serif;
+            text-align: center;
+            display: flex; /* Add flexbox */
+            justify-content: center; /* Center horizontally */
+            align-items: center; /* Center vertically */
+        }
+        .file-container1 a {
+            text-decoration: none;
+            color: #01B8AA;
+            font-weight: bold;
+            font-size: 20px;
+            transition: color 0.3s;
+        }
+        .file-container1 a:hover {
+            color: #019a90;
+            font-size: x-large;
+            
+        }
+        .file-container2 {
+            width: 15%; /* Same width as comments container */
+            height: 60px; /* Adjust height as needed */
+            position: absolute;
+            top: 57.5%; /* Adjust top position based on comments container */
+            right: 0%;
+            transform: translateX(-30%);
+            background-color: #fff; /* Background color for visibility */
+            padding: 15px;
+            border-radius: 15px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+            font-family: 'Calibri', sans-serif;
+            text-align: center;
+            display: flex; /* Add flexbox */
+            justify-content: center; /* Center horizontally */
+            align-items: center; /* Center vertically */
+        }
+        .file-container2 a {
+            text-decoration: none;
+            color: #01B8AA;
+            font-weight: bold;
+            font-size: 20px;
+            transition: color 0.3s;
+        }
+        .file-container2 a:hover {
+            color: #019a90;
+            font-size: x-large;
+            
+        }
+        .file-container3 {
+            width: 15%; /* Same width as comments container */
+            height: 60px; /* Adjust height as needed */
+            position: absolute;
+            top: 70%; /* Adjust top position based on comments container */
+            right: 0%;
+            transform: translateX(-30%);
+            background-color: #fff; /* Background color for visibility */
+            padding: 15px;
+            border-radius: 15px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+            font-family: 'Calibri', sans-serif;
+            text-align: center;
+            display: flex; /* Add flexbox */
+            justify-content: center; /* Center horizontally */
+            align-items: center; /* Center vertically */
+        }
+        .file-container3 a {
+            text-decoration: none;
+            color: #01B8AA;
+            font-weight: bold;
+            font-size: 20px;
+            transition: color 0.3s;
+        }
+        .file-container3 a:hover {
+            color: #019a90;
+            font-size: x-large;
+            
+        }
+        </style>
+</head>
+<body>
+    <div>
+        <div class="top-image-container"></div>
+    <div class="navigation">
+        <img src="https://jigpcsa.sharepoint.com/:i:/r/sites/JIGPCDashboard/SiteAssets/jigpc_logo.ico" alt="Navigation Icon">
+        <a href="https://jigpcsa.sharepoint.com/:u:/r/sites/JIGPCDashboard/SitePages/Home.aspx">Home</a>
+        <a href="https://jigpcsa.sharepoint.com/:u:/r/sites/JIGPCDashboard/SitePages/EHS.aspx">EH&S</a>
+        <div class="dropdown">
+            <a class="dropbtn">Quality</a>
+            <div class="dropdown-content">
+                <a href="https://jigpcsa.sharepoint.com/:u:/r/sites/JIGPCDashboard/SitePages/Quality.aspx">Doc Status</a>
+                <a href="https://jigpcsa.sharepoint.com/:u:/r/sites/JIGPCDashboard/SitePages/Warehouse.aspx">Warehouse Inspection</a>
+            </div>
+        </div>
+        <a href="https://jigpcsa.sharepoint.com/:u:/r/sites/JIGPCDashboard/SitePages/Portfolio.aspx">Portfolio</a>
+        <div class="dropdown">
+            <a class="dropbtn">Programs</a>
+            <div class="dropdown-content">
+                <a href="https://jigpcsa.sharepoint.com/:u:/r/sites/JIGPCDashboard/SitePages/Cybersecurity.aspx">Cybersecurity</a>
+                <a href="https://jigpcsa.sharepoint.com/:u:/r/sites/JIGPCDashboard/SitePages/FAITs.aspx">FAITs</a>
+            </div>
+        </div>
+        <div class="dropdown">
+            <a class="dropbtn">Projects</a>
+            <div class="dropdown-content">
+                <a href="https://jigpcsa.sharepoint.com/:u:/r/sites/JIGPCDashboard/SitePages/Projects.aspx">Projects Status</a>
+                <a href="https://jigpcsa.sharepoint.com/:u:/r/sites/JIGPCDashboard/SitePages/Dossier.aspx">Dossier Status</a>
+                <a href="https://jigpcsa.sharepoint.com/:u:/r/sites/JIGPCDashboard/SitePages/V-Line%20Project.aspx">V-Line Project</a>
+            </div>
+        </div>
+        <a href="https://jigpcsa.sharepoint.com/:u:/r/sites/JIGPCDashboard/SitePages/Shutdown.aspx">Shutdown</a>
+        
+        <a href="https://jigpcsa.sharepoint.com/:u:/r/sites/JIGPCDashboard/SitePages/Project-Cost.aspx">Projects Cost</a>
+        <a href="https://jigpcsa.sharepoint.com/:u:/r/sites/JIGPCDashboard/SitePages/DNs-EVM.aspx">EVM Review</a>
+        <a href="https://jigpcsa.sharepoint.com/:u:/r/sites/JIGPCDashboard/SitePages/Revenue.aspx">Revenue Cashflow</a>
+        <a href="https://jigpcsa.sharepoint.com/:u:/r/sites/JIGPCDashboard/SitePages/Contract-Admin.aspx">Contract Admin</a>
+    </div>
+
+        <div class="page-title">EVM Report</div>
+    </div>
+    <div class="iframe-box">
+        <iframe src="https://app.powerbi.com/reportEmbed?reportId=a2af1026-530c-4164-b3db-d9602b59b078&autoAuth=true&ctid=1836ae80-9c27-44f6-80f1-a5872d7cce5f&navContentPaneEnabled=false&filterPaneEnabled=false" frameborder="0" style="width: 100%; height: 100%;" frameborder="0" style="width: 100%; height: 100%;"></iframe>
+    </div>
+    <div class="file-container11">
+        <a href="https://jigpcsa-my.sharepoint.com/:x:/r/personal/m_malik_jigpc_com/Documents/Documents/PD%20Works/TR%20Summary/Live%20-%20Task%20Request%20Summary.xlsx?d=wa7c520abb183436aad2d44b4d52d0906&csf=1&web=1&e=4INPtT" target="_blank">TR Track</a>
+    </div>
+    <div class="file-container1">
+        <a href="https://jigpcsa-my.sharepoint.com/:x:/r/personal/m_malik_jigpc_com/Documents/Documents/PD%20Works/PD%20Master%20Tracker/Live/PD%20Master%20Tracker_Live%20File_Live.xlsx?d=wd5b2bb54cbbe47d7bd2b791e0e16e83d&csf=1&web=1&e=k3nBLm" target="_blank">PD Master Tracker</a>
+    </div>
+    <div class="file-container2">
+        <a href="https://jigpcsa-my.sharepoint.com/:x:/r/personal/m_malik_jigpc_com/Documents/Documents/PD%20Works/PMS/Live/DNs%20PMS_working%20file_Live%20OM%20PC.xlsx?d=w88a10f2f90614683b5dd7e875ca5f004&csf=1&web=1&e=q1SGUb" target="_blank">Master PMS</a>
+    </div>
+    <div class="file-container3">
+        <a href="https://jigpcsa-my.sharepoint.com/:f:/g/personal/m_malik_jigpc_com/EvuoTmyMbTdPuSvjayCSVZkBJUT-BOpYCjcopbafZJIUNw?e=KFecF8" target="_blank">Cost Report</a>
+    </div>
+</html>

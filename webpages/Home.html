@@ -1,0 +1,721 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Development Platform</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+<script>
+
+    let startDate = '01/21/2025 00:00:00'
+    let endDate = '02/27/2025 00:00:00'
+    let message = '27 February - Hydrogen to Refinery & 1st March VR to IGCC'
+</script>
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Poppins", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+        }
+
+        body {
+            display: block;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #f5f5f5;
+            position: relative;
+        }
+
+        .ms-compositeHeader, .od-SuiteNav {
+            display: none !important;
+        }
+
+        .hero {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 80px 10px;
+            text-align: center;
+            background-color: #000;
+            height: 750px;
+            margin-bottom: 150px;
+            overflow: hidden;
+            flex-direction: column;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: url('https://jigpcsa.sharepoint.com/:i:/r/sites/JIGPCDashboard/SiteAssets/Home_page.jpeg?csf=1&web=1&e=ga9erQ');
+            background-size: cover;
+            background-position: center;
+            opacity: 0.3;
+            animation: zoomIn 20s ease-in-out forwards;
+        }
+
+        @keyframes zoomIn {
+            0% { transform: scale(1); }
+            100% { transform: scale(1.1); }
+        }
+
+        .line {
+            position: absolute;
+            top: 12%;
+            left: 0;
+            width: 100%;
+            height: 1px;
+            background-color: grey;
+            opacity: 0.3;
+        }
+
+        .logo-text {
+            position: absolute;
+            top: 5%;
+            width: 100%;
+            text-align: center;
+            font-size: 22px;
+            font-weight: 500;
+            color: rgba(255, 255, 255, 0.85);
+            letter-spacing: 1px;
+        }
+
+        /* Add small circles container */
+        #small-circles {
+            position: absolute;
+			top: 35%;
+            right: 100px;
+            transform: translateY(-50%);
+            display: flex;
+            flex-direction: column;
+            gap: 50px;
+        }
+
+        #small-circles .circle {
+            width: 100px;
+            height: 100px;
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #small-circles .circle svg {
+            position: relative;
+            width: 100px;
+            height: 100px;
+            transform: rotate(270deg);
+        }
+
+        #small-circles .circle svg circle {
+            width: 100%;
+            height: 100%;
+            fill: transparent;
+            stroke-width: 8;
+            stroke: #282828;
+            stroke-linecap: round;
+            transform: translate(5px, 5px);
+        }
+
+        #small-circles .circle svg circle:nth-child(2) {
+            stroke: var(--clr);
+            stroke-dasharray: 283;
+            stroke-dashoffset: 283;
+        }
+
+        #small-circles div {
+            position: absolute;
+            text-align: center;
+            font-weight: 500;
+            color: #fff;
+            font-size: 1.1em;
+        }
+
+        #small-circles div span {
+            position: absolute;
+            transform: translateX(-50%) translateY(2px);
+            font-weight: 250;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            font-size: 0.35em;
+        }
+
+        /* Original styles continue here */
+        #time {
+            display: flex;
+            gap: 30px;
+            justify-content: center;
+            margin-bottom: 01px;
+        }
+
+        #time .circle {
+            position: relative;
+            width: 150px;
+            height: 150px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #time .circle svg {
+            position: relative;
+            width: 150px;
+            height: 150px;
+            transform: rotate(270deg);
+        }
+
+        #time .circle svg circle {
+            width: 100%;
+            height: 100%;
+            fill: transparent;
+            stroke-width: 8;
+            stroke: #282828;
+            stroke-linecap: round;
+            transform: translate(5px, 5px);
+        }
+
+        #time .circle svg circle:nth-child(2) {
+            stroke: var(--clr);
+            stroke-dasharray: 440;
+            stroke-dashoffset: 440;
+        }
+
+        #time div {
+            position: absolute;
+            text-align: center;
+            font-weight: 500;
+            color: #fff;
+            font-size: 1.5em;
+        }
+
+        #time div span {
+            position: absolute;
+            transform: translateX(-50%) translateY(2px);
+            font-size: 0.38em;
+            font-weight: 300;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+        }
+
+        #time .dots {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+        }
+
+        #time .dots::before {
+            content: '';
+            position: absolute;
+            top: -3px;
+            width: 15px;
+            height: 15px;
+            background: var(--clr);
+            border-radius: 50%;
+            box-shadow: 0 0 20px var(--clr), 0 0 60px var(--clr);
+        }
+
+        .shutdownStarted {
+            font-size: 8em;
+            font-weight: 500;
+            color: #fff;
+            text-align: center;
+            line-height: 0.6em;
+            display: none;
+        }
+
+        .shutdownStarted span {
+            font-size: 0.5em;
+            font-weight: 300;
+        }
+
+        
+        .message {
+            font-size: 5em;
+            font-weight: 400;
+            color: #fff;
+            text-align: center;
+            line-height: 0.1em;
+            display: inline;
+            margin-bottom: 120px;
+        }
+
+        .message span {
+        font-size: 0.3em;
+        }
+
+        .titleJIGPC {
+            font-size: 4em;
+            font-weight: 700;
+            color: White;
+            text-align: center;
+            line-height: 0.6em;
+            display: flex;
+        }
+
+        .tagLineJIGPC {
+            font-size: 2em;
+            font-weight: 500;
+            color: White;
+            text-align: center;
+            line-height: 3.2em;
+            display: inline-block;
+        }
+        
+        .power-off-icon {
+            position: absolute;
+            top: 47%;
+            right: 52%;
+            transform: translateY(-50%);
+            color: rgb(40, 216, 24);
+            font-size: 2rem;
+            cursor: pointer;
+            animation: pulse 2s infinite;
+            text-decoration: none;
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.2);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        .bar-chart-icon {
+            position: absolute;
+            top: 49.5%; /* Align with the shutdown icon */
+            right: 46%; /* Position it slightly left of the shutdown icon */
+            transform: translateY(-50%);
+            color: yellowgreen;
+            font-size: 2rem;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        .bar-chart-icon:hover {
+            color: yellowgreen; /* Optional: Change color on hover */
+        }
+
+        .line-chart-icon {
+            position: absolute;
+            top: 49.5%; /* Align with the shutdown icon */
+            right: 40%; /* Position it slightly left of the shutdown icon */
+            transform: translateY(-50%);
+            color: rgb(104, 237, 247);
+            font-size: 2rem;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        .line-chart-icon:hover {
+            color: rgb(25, 186, 192); /* Optional: Change color on hover */
+            font-size: 2.1rem;
+        }
+
+        .grid-container {
+            max-width: 1600px;
+            margin: -240px auto 0;
+            padding: 0 20px 80px;
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            gap: 30px;
+            position: relative;
+        }
+
+        .card {
+            background: white;
+            border-radius: 8px;
+            padding: 32px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+            transition: box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            height: 300px;
+        }
+        
+        .card:hover {
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .category-type {
+            font-size: 14px;
+            font-weight: 600;
+            color: #666;
+            margin-bottom: 16px;
+        }
+
+        .card h2 {
+            font-size: 24px;
+            color: #333;
+            margin-bottom: 16px;
+        }
+
+        .card p {
+            color: #666;
+            margin-bottom: 24px;
+            min-height: 48px;
+	    flex-grow: 1;
+        }
+
+        .learn-more {
+            display: inline-block;
+            padding: 8px 24px;
+            border-radius: 4px;
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: background-color 0.3s ease;
+            align-self: center;
+            margin-top: auto;
+        }
+
+        .color-net {
+            background-color: #28a745;
+        }
+
+        .color-net:hover {
+            background-color: #218838;
+        }
+
+        .color-mobile {
+            background-color: #007bff;
+        }
+
+        .color-mobile:hover {
+            background-color: #0056b3;
+        }
+
+        .color-html5 {
+            background-color: #dc3545;
+        }
+
+        .color-html5:hover {
+            background-color: #c82333;
+        }
+
+        .color-testing {
+            background-color: #4a5568;
+        }
+
+        .color-testing:hover {
+            background-color: #2d3748;
+        }
+		
+		<!-- -->
+		
+	.tooltipiRT {
+      display: none;
+      position: absolute;
+      top: 50%;
+      left: -250%;
+      transform: translateY(-50%);
+      background-color: #0e64d4;
+      color: #ff2972;
+      padding: 0.5rem;
+      border-radius: 0.3rem;
+      text-align: center;
+      z-index: 10;
+      white-space: nowrap;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    }
+
+    .tooltipiRT::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 220px;
+      transform: translateY(-50%);
+      border-width: 10px;
+      border-style: solid;
+      border-color: transparent #0e64d4 transparent transparent;
+    }
+
+    .circle:hover .tooltipiRT {
+      display: block;
+    }
+		
+	<!-- -->
+	.tooltipLRT {
+      display: none;
+      position: absolute;
+      top: 50%;
+      left: -250%;
+      transform: translateY(-50%);
+      background-color: #c3ec0c;
+      color: #ff2972;
+      padding: 0.5rem;
+      border-radius: 0.3rem;
+      text-align: center;
+      z-index: 10;
+      white-space: nowrap;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    }
+
+    .tooltipLRT::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 220px;
+      transform: translateY(-50%);
+      border-width: 10px;
+      border-style: solid;
+      border-color: transparent #c3ec0c transparent transparent;
+    }
+
+    .circle:hover .tooltipLRT {
+      display: block;
+    }
+		
+    </style>
+
+</head>
+
+<body>
+     <div class="hero">
+        <div class="line"></div>
+        <div class="logo-text">JAZAN INTEGRATED GASIFICATION AND POWER COMPANY</div>
+
+        <!-- Main Timer -->
+        <div id="time">
+            <!-- Your original 4 circles here -->
+            <div class="circle" style="--clr:#ffffff;">
+                <div class="dots day_dot"></div>
+                <svg>
+                    <circle cx="70" cy="70" r="70"></circle>
+                    <circle cx="70" cy="70" r="70" id="dd"></circle>
+                </svg>
+                <div id="days">00<br><span>Days</span></div>
+            </div>
+
+            <div class="circle" style="--clr:#ff2972;">
+                <div class="dots hr_dot"></div>
+                <svg>
+                    <circle cx="70" cy="70" r="70"></circle>
+                    <circle cx="70" cy="70" r="70" id="hh"></circle>
+                </svg>
+                <div id="hours">00<br><span>Hours</span></div>
+            </div>
+
+            <div class="circle" style="--clr:#fee800;">
+                <div class="dots min_dot"></div>
+                <svg>
+                    <circle cx="70" cy="70" r="70"></circle>
+                    <circle cx="70" cy="70" r="70" id="mm"></circle>
+                </svg>
+                <div id="minutes">00<br><span>Minutes</span></div>
+            </div>
+
+            <div class="circle" style="--clr:#04fc43;">
+                <div class="dots ss_dot"></div>
+                <svg>
+                    <circle cx="70" cy="70" r="70"></circle>
+                    <circle cx="70" cy="70" r="70" id="ss"></circle>
+                </svg>
+                <div id="seconds">00<br><span>Seconds</span></div>
+            </div>
+        </div>
+
+        <!-- Small Circles -->
+        <div id="small-circles">
+            <div class="circle" style="--clr:#0e64d4;">
+			<div class="tooltipiRT" style="color:#000000;">
+				<strong>IRT</strong><br><em>Start Date: 01-Mar-2025 <br> End Date: 29-Nov-2025</em>
+			</div>
+                <div class="dots march_dot"></div>
+                <svg>
+                    <circle cx="45" cy="45" r="45"></circle>
+                    <circle cx="45" cy="45" r="45" id="march"></circle>
+                </svg>
+                <div id="march-days">00<br><span>Days iRT</span></div>
+            </div>
+			<div style="top: 110px; font-size: 0.80em; width: 100%;">0.96 Test Per Day</div>
+			
+
+            <div class="circle" style="--clr:#c3ec0c;">
+				<div class="tooltipLRT" style="color:#000000;">
+					<strong>LRT</strong><br><em>Start Date: 20-Sep-2025 <br> End Date: 30-Nov-2026</em>
+				</div>
+                <div class="dots april_dot"></div>
+                <svg>
+                    <circle cx="45" cy="45" r="45"></circle>
+                    <circle cx="45" cy="45" r="45" id="april"></circle>
+                </svg>
+                <div id="april-days">00<br><span>Days LRT</span></div>
+            </div>
+			<div style="top: 260px; font-size: 0.84em;">1.15 Test Per Day</div>
+        </div>
+
+        <!-- Original elements -->
+        <a href="https://jigpcsa-my.sharepoint.com/:b:/g/personal/m_malik_jigpc_com/EejD--FospFEjULuj9-Rwy0BsGBiRl0S-P33EkxWqPjlMQ?e=UrOaoX" class="power-off-icon" target="_blank">
+            <i class="fas fa-power-off"></i>
+        </a>
+        <a href="https://jigpcsa-my.sharepoint.com/:i:/g/personal/m_malik_jigpc_com/EXef0DMaAL1AqfV52pScHAYBmz2g8vjScuJ527B-xHuHUg?e=GhSMpw" class="bar-chart-icon" target="_blank">
+            <i class="fas fa-chart-bar"></i>
+        </a>
+        <a href="https://app.powerbi.com/reportEmbed?reportId=70574063-848c-424f-909d-28981fa7f284&autoAuth=true&ctid=1836ae80-9c27-44f6-80f1-a5872d7cce5f" class="line-chart-icon" target="_blank">
+            <i class="fa fa-line-chart" aria-hidden="true"></i>
+        </a>
+
+
+        <h3 class="message"><span>Shutdown started....Full Shut on 21st Jan 2025</span></h3>
+        <h2 class="shutdownStarted"><span>Shutdown Started...</span></h2>
+        <div class="titleJIGPC">JIGPC Digital Reporting System</div>
+        <div class="tagLineJIGPC">Imagine . Innovate . Implement</div>
+    </div>
+
+    <!-- Grid Container with Cards -->
+    <div class="grid-container">
+        <div class="card">
+            <div class="category-type"></div>
+            <h2>Project Delivery</h2>
+            <p>Programs, Portfolio, and Projects Performance management and Reporting</p>
+            <a href="https://jigpcsa.sharepoint.com/:u:/r/sites/JIGPCDashboard/SitePages/Projects.aspx" class="learn-more color-net">Explore</a>
+        </div>
+
+        <div class="card">
+            <div class="category-type"></div>
+            <h2>Commissioning & Startup Unit</h2>
+            <p>Commissioning activities and performance</p>
+            <a href="https://jigpcsa.sharepoint.com/:u:/r/sites/JIGPCDashboard/SitePages/Commissioning.aspx" class="learn-more color-html5">Explore</a>
+        </div>
+
+        <div class="card">
+            <div class="category-type"></div>
+            <h2>Mx OPS</h2>
+            <p>Maintenance and Turnarounds performance</p>
+            <a href="https://jigpcsa.sharepoint.com/:u:/r/sites/JIGPCDashboard/SitePages/Mx_Ops.aspx" class="learn-more color-testing">Explore</a>
+        </div>
+
+        <div class="card">
+            <div class="category-type"></div>
+            <h2>Supply Chain</h2>
+            <p>End-to-end supply chain management performance and KPI</p>
+            <a href="https://jigpcsa.sharepoint.com/:u:/r/sites/JIGPCDashboard/SitePages/PR&PO_S.aspx" class="learn-more color-mobile">Explore</a>
+        </div>
+
+        <div class="card">
+            <div class="category-type"></div>
+            <h2>Quality Management</h2>
+            <p>Quality control and assurance management system</p>
+            <a href="https://jigpcsa.sharepoint.com/:u:/r/sites/JIGPCDashboard/SitePages/Quality.aspx" class="learn-more color-html5">Explore</a>
+        </div>
+
+        <div class="card">
+            <div class="category-type"></div>
+            <h2>Support Services</h2>
+            <p>Supporting departments and services information</p>
+            <a href="https://jigpcsa.sharepoint.com/:u:/r/sites/JIGPCDashboard/SitePages/Transport.aspx" class="learn-more color-testing">Explore</a>
+        </div>
+    </div>
+
+<script>            
+        let x = setInterval(function() {
+
+        let currentDate = new Date();
+        let now = new Date().getTime();
+
+        let start = new Date(startDate).getTime();                    
+        let countDown = new Date(endDate).getTime();        
+
+        let distance = countDown - now;
+
+            // Main countDown
+            let d = Math.floor(distance / (1000 * 60 * 60 * 24));
+            let h = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            let m = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            let s = Math.floor((distance % (1000 * 60)) / 1000);
+
+            // Update display
+            days.innerHTML = d + "<br><span>days</span>";
+            hours.innerHTML = h + "<br><span>hours</span>";
+            minutes.innerHTML = m + "<br><span>minutes</span>";
+            seconds.innerHTML = s + "<br><span>seconds</span>";
+
+            // Message
+            document.querySelector(".message").innerHTML = `<span>${message}</spam>`;
+            document.querySelector(".message").style.display = 'block';
+
+			// Convert the difference from milliseconds to days
+			let differenceInDays = distance / (1000 * 3600 * 24);
+
+            // Update circle animations
+            dd.style.strokeDashoffset = 440 - (440 * d) / 22;
+            hh.style.strokeDashoffset = 440 - (440 * h) / 24;
+            mm.style.strokeDashoffset = 440 - (440 * m) / 60;
+            ss.style.strokeDashoffset = 440 - (440 * s) / 60;
+
+            if (currentDate < startDate || currentDate > endDate) {
+                console.log("Counter is not active");
+                return;
+            }
+                
+            if (distance < 0) {
+                clearInterval(x);
+                document.querySelector(".message").style.display = 'none';
+            } else { console.log(`Time left: ${countDown} ms - ${message}`); }
+        }, 1000);
+
+</script>
+
+<script>
+        let marchDays = document.getElementById('march-days');
+        let aprilDays = document.getElementById('april-days');
+        
+        let march = document.getElementById('march');
+        let april = document.getElementById('april');
+        	
+        let marchStartDate = '03/01/2025 00:00:00'; // iRT Start Date
+		let marchEndDate = '11/29/2025 00:00:00'; // iRT End Date
+		
+        let aprilStartDate = '09/20/2025 00:00:00'; // LRT Start Date
+		let aprilEndDate = '11/30/2026 00:00:00'; // LRT End Date
+        
+        let y = setInterval(function() {
+		
+            let marchStartCountDown = new Date(marchStartDate).getTime();
+            let aprilStartCountDown = new Date(aprilStartDate).getTime();
+			
+			let marchEndCountDown = new Date(marchEndDate).getTime();
+			let aprilEndCountDown = new Date(aprilEndDate).getTime();
+            
+            let marchDistance = marchEndCountDown - marchStartCountDown;
+            let aprilDistance = aprilEndCountDown - aprilStartCountDown;
+				
+			// Calculate the number of days remaining from today to the max date
+			let remainingDaysMarch = Math.floor((marchEndCountDown - marchStartCountDown) / (1000 * 60 * 60 * 24));
+			let remainingDaysApril = Math.floor((aprilEndCountDown - aprilStartCountDown) / (1000 * 60 * 60 * 24));
+        
+			// Calculate the stroke offset based on the remaining days
+			let strokeDashoffsetMarch = 273 - (273 * remainingDaysMarch) / remainingDaysMarch;
+			let strokeDashoffsetApril = 436 - (436 * remainingDaysApril) / remainingDaysApril;
+			
+			// Apply the stroke offset to the SVG element
+			march.style.strokeDashoffset = strokeDashoffsetMarch;
+			april.style.strokeDashoffset = strokeDashoffsetApril;
+		                    
+            // Update displays
+            marchDays.innerHTML = remainingDaysMarch + "<br><span>Days IRT</span>";
+            aprilDays.innerHTML = remainingDaysApril + "<br><span>Days LRT</span>";
+               
+        }, 1000);
+    </script>
+
+</body>
+</html>

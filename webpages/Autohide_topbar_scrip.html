@@ -1,0 +1,32 @@
+<script>
+    setTimeout(function() {
+        // Target specific SharePoint and Office 365 UI components without affecting main content
+        document.querySelectorAll(
+            ".ms-compositeHeader, .od-SuiteNav, .ms-CommandBar, .ms-CommandBar-wrapper, #spSiteHeader, #header, .site-header, " +
+            ".od-LeftRail, .od-SuiteNav-content, .sp-appBar, " +
+            ".comments, .sp-comments-container, #CommentsWrapper, .feedback, .social-comment, .ms-comment, " +
+            ".sp-siteTopBar, .sp-topBar, .sp-titleBar"
+        ).forEach(function(element) {
+            element.style.display = "none";
+        });
+
+        // Remove padding/margin from html and body
+        document.querySelector("html").style.padding = "0";
+        document.querySelector("html").style.margin = "0";
+        document.querySelector("body").style.padding = "0";
+        document.querySelector("body").style.margin = "0";
+
+        // Ensure main content container is aligned to the top
+        const mainContainer = document.querySelector("#mainContent, .ms-ContentLayoutContainer, .spPageCanvas");
+        if (mainContainer) {
+            mainContainer.style.marginTop = "0";
+            mainContainer.style.paddingTop = "0";
+        }
+
+        // Additional adjustment to ensure main content starts at the top
+        if (mainContainer) {
+            mainContainer.style.transform = "translateY(-20px)";
+        }
+
+    }, 2000); // 2000 milliseconds = 2 seconds
+</script>
